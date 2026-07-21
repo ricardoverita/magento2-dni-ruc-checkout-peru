@@ -1,0 +1,28 @@
+<?php
+/** @var \Vera\DniRucCheckout\Block\Adminhtml\Order\ReceiptData $block */
+?>
+<?php if ($block->hasReceiptData()): ?>
+    <section class="admin__page-section-item order-information">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $block->escapeHtml(__('Receipt data')) ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <table class="admin__table-secondary">
+                <?php foreach ($block->getReceiptRows() as $row): ?>
+                    <?php
+                    $value = $row['value'];
+                    if ($row['label'] === (string) __('Receipt type')) {
+                        $value = $block->getReceiptTypeLabel($value);
+                    } elseif ($row['label'] === (string) __('Document type')) {
+                        $value = $block->getTaxIdTypeLabel($value);
+                    }
+                    ?>
+                    <tr>
+                        <th><?= $block->escapeHtml($row['label']) ?></th>
+                        <td><?= $block->escapeHtml($value) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </section>
+<?php endif; ?>

@@ -1,0 +1,78 @@
+<div class="vera-dni-ruc-checkout" data-bind="visible: isEnabled">
+    <fieldset class="fieldset">
+        <legend class="legend">
+            <span data-bind="i18n: 'Payment receipt'"></span>
+        </legend>
+
+        <div class="field receipt-type required">
+            <label id="vera-receipt-type-label" class="label" for="vera-receipt-type-boleta">
+                <span data-bind="i18n: 'Receipt type'"></span>
+            </label>
+            <div class="control vera-receipt-type-options" role="radiogroup" aria-labelledby="vera-receipt-type-label">
+                <label class="choice">
+                    <input id="vera-receipt-type-boleta" type="radio" name="vera_receipt_type" value="boleta"
+                           data-bind="checked: receiptType, event: {change: onReceiptTypeChange}">
+                    <span data-bind="i18n: 'Boleta'"></span>
+                </label>
+                <label class="choice">
+                    <input id="vera-receipt-type-factura" type="radio" name="vera_receipt_type" value="factura"
+                           data-bind="checked: receiptType, event: {change: onReceiptTypeChange}">
+                    <span data-bind="i18n: 'Factura'"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="field document-type">
+            <label class="label" for="vera-tax-id-type">
+                <span data-bind="i18n: 'Document type'"></span>
+            </label>
+            <div class="control">
+                <span id="vera-tax-id-type" data-bind="text: taxIdTypeLabel"></span>
+            </div>
+        </div>
+
+        <div class="field tax-id" data-bind="css: {required: isFactura() || dniRequired}">
+            <label class="label" for="vera-tax-id">
+                <span data-bind="text: taxIdTypeLabel"></span>
+            </label>
+            <div class="control">
+                <input id="vera-tax-id" class="input-text" type="text" inputmode="numeric" autocomplete="off"
+                       pattern="[0-9]*"
+                       data-bind="value: taxId, valueUpdate: 'input', event: {input: onTaxIdInput, change: onFieldChange}, attr: {
+                           maxlength: isBoleta() ? 8 : 11,
+                           'aria-invalid': errors.taxId() ? 'true' : 'false',
+                           'aria-describedby': errors.taxId() ? 'vera-tax-id-error' : null
+                       }">
+                <div id="vera-tax-id-error" class="mage-error" role="alert" data-bind="text: errors.taxId, visible: errors.taxId"></div>
+            </div>
+        </div>
+
+        <div class="field company-name required" data-bind="visible: isFactura">
+            <label class="label" for="vera-company-name">
+                <span data-bind="i18n: 'Company name'"></span>
+            </label>
+            <div class="control">
+                <input id="vera-company-name" class="input-text" type="text" maxlength="255" autocomplete="organization"
+                       data-bind="value: companyName, valueUpdate: 'input', event: {change: onFieldChange}, attr: {
+                           'aria-invalid': errors.companyName() ? 'true' : 'false',
+                           'aria-describedby': errors.companyName() ? 'vera-company-name-error' : null
+                       }">
+                <div id="vera-company-name-error" class="mage-error" role="alert" data-bind="text: errors.companyName, visible: errors.companyName"></div>
+            </div>
+        </div>
+
+        <div class="field fiscal-address required" data-bind="visible: isFactura">
+            <label class="label" for="vera-fiscal-address">
+                <span data-bind="i18n: 'Fiscal address'"></span>
+            </label>
+            <div class="control">
+                <input id="vera-fiscal-address" class="input-text" type="text" maxlength="255" autocomplete="street-address"
+                       data-bind="value: fiscalAddress, valueUpdate: 'input', event: {change: onFieldChange}, attr: {
+                           'aria-invalid': errors.fiscalAddress() ? 'true' : 'false',
+                           'aria-describedby': errors.fiscalAddress() ? 'vera-fiscal-address-error' : null
+                       }">
+                <div id="vera-fiscal-address-error" class="mage-error" role="alert" data-bind="text: errors.fiscalAddress, visible: errors.fiscalAddress"></div>
+            </div>
+        </div>
+    </fieldset>
+</div>

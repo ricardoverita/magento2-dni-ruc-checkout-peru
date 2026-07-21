@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<acl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <resources>
+        <resource id="Magento_Backend::admin">
+            <resource id="Magento_Sales::sales">
+                <resource id="Vera_DniRucCheckout::config" title="Vera DNI/RUC Checkout Configuration" sortOrder="850"/>
+            </resource>
+        </resource>
+    </resources>
+</acl>

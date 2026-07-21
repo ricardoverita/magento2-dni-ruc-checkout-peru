@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote" resource="checkout">
+        <column xsi:type="varchar" name="vera_receipt_type" nullable="true" length="32" comment="Vera Receipt Type"/>
+        <column xsi:type="varchar" name="vera_tax_id_type" nullable="true" length="16" comment="Vera Tax ID Type"/>
+        <column xsi:type="varchar" name="vera_tax_id" nullable="true" length="11" comment="Vera Tax ID"/>
+        <column xsi:type="varchar" name="vera_company_name" nullable="true" length="255" comment="Vera Company Name"/>
+        <column xsi:type="varchar" name="vera_fiscal_address" nullable="true" length="255" comment="Vera Fiscal Address"/>
+    </table>
+    <table name="sales_order" resource="sales">
+        <column xsi:type="varchar" name="vera_receipt_type" nullable="true" length="32" comment="Vera Receipt Type"/>
+        <column xsi:type="varchar" name="vera_tax_id_type" nullable="true" length="16" comment="Vera Tax ID Type"/>
+        <column xsi:type="varchar" name="vera_tax_id" nullable="true" length="11" comment="Vera Tax ID"/>
+        <column xsi:type="varchar" name="vera_company_name" nullable="true" length="255" comment="Vera Company Name"/>
+        <column xsi:type="varchar" name="vera_fiscal_address" nullable="true" length="255" comment="Vera Fiscal Address"/>
+    </table>
+</schema>
